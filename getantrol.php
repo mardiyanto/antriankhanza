@@ -71,7 +71,7 @@ $bg = array_rand($bg_array,1);
                         <td>
                            <center>
                         
-                                  <font size='5' color='#AAAA00' face='Tahoma' >Antrian Poli ".getOne("select nm_poli from poliklinik where kd_poli='".$kd_poli."'").", Dokter ".getOne("select nm_dokter from dokter where kd_dokter='".$kd_dokter."'")."<br> ".date("d-M-Y", $tanggal)."  ". $jam."</font>
+                                  <font size='5'  face='Tahoma' >Antrian Poli ".getOne("select nm_poli from poliklinik where kd_poli='".$kd_poli."'").", Dokter ".getOne("select nm_dokter from dokter where kd_dokter='".$kd_dokter."'")."<br> ".date("d-M-Y", $tanggal)."  ". $jam."</font>
                                   <br><br>
                            </center>
                         </td>   
@@ -81,18 +81,17 @@ $bg = array_rand($bg_array,1);
     ?>
     <table width='100%' bgcolor='FFFFFF' border='0' align='center' cellpadding='0' cellspacing='0'>
          <tr class='head5'>
-           <td width='100%'><div align='center'></div></td>
+           <td width='100%'><div align='center'>PANGILAN ATAS NAMA :</div></td>
          </tr>
     </table>
     <table class='table' border='0' witdh='100%' cellpadding='0' cellspacing='0'>
         <tr class='head2' border='0'>
-            <td width='35%' align='center'><font size='6' color='#DD0000'><b>Panggilan Poli</b></font></td><td><font size='6' color='#DD0000'><b>:</b></font></td>
             <td width='64%' align='center'>
             <?php 
                 $_sql="select * from antripoli where antripoli.kd_poli='".$kd_poli."' and antripoli.kd_dokter='".$kd_dokter."'" ;  
                 $hasil=bukaquery($_sql);
                 while ($data = mysqli_fetch_array ($hasil)){
-                    echo "<font size='6' color='#DD0000'><b>".getOne("select concat(reg_periksa.no_reg,'  ',pasien.nm_pasien) from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where reg_periksa.no_rawat='".$data['no_rawat']."'")."</b></font>";
+                    echo "<font size='8' color='#DD0000'><b>".getOne("select concat(reg_periksa.no_reg,' ',pasien.nm_pasien) from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where reg_periksa.no_rawat='".$data['no_rawat']."'")."</b></font>";
                     if($data['status']=="1"){
                         echo "<audio autoplay='true' src='bell.wav'>";
                         bukaquery2("update antripoli set antripoli.status='0' where antripoli.kd_poli='".$kd_poli."' and antripoli.kd_dokter='".$kd_dokter."'");
